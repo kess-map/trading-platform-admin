@@ -27,7 +27,7 @@ const SellRequestsPage = () => {
     if (action === 'view') {
       navigate(`/sell-requests/${order._id}`);
     }else if (action === 'match') {
-        navigate(`/match-sell-order/${order._id}`);
+        navigate(`/sell-requests/${order._id}/match`);
     }else if (action === 'approve') {
       await axios.post(`/admin/sell-orders/${order._id}/status`, {action: 'approved'})
       setOrders(prev =>
