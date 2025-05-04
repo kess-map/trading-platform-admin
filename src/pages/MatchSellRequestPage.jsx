@@ -10,6 +10,7 @@ const MatchSellRequestPage = () => {
   const [buyOrders, setBuyOrders] = useState([]);
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [remainingAmount, setRemainingAmount] = useState(0);
+  const [paymentMethod, setPaymentMethod] = useState('')
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -19,6 +20,7 @@ const MatchSellRequestPage = () => {
       const res = await axios.get(`/admin/sell-orders/${id}`);
       setSellOrder(res.data.data.sellOrder);
       setRemainingAmount(res.data.data.sellOrder.remainingAmount);
+      setPaymentMethod(res.data.data.paymentMethod)
     } catch (err) {
       toast.error('Failed to fetch sell order');
     }
@@ -30,6 +32,7 @@ const MatchSellRequestPage = () => {
         params: {
           page: pageNum,
           limit: 10,
+          paymentMethod
         },
       });
       const newOrders = res.data.data.orders;
