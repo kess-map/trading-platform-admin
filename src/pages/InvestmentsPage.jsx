@@ -23,6 +23,7 @@ const InvestmentsPage = () => {
 
     const res = await axios.get(`/admin/investments?${queryParams}`);
     setInvestments(res.data.data.investments);
+    console.log(res.data.data.investments)
     setPages(res.data.data.pages);
   };
 
@@ -59,10 +60,9 @@ const InvestmentsPage = () => {
             <option value="">All Statuses</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
           </select>
 
-          <button onClick={() => handleSortChange('durationInDays')} className="px-3 py-2 bg-gray-800 text-white rounded">
+          <button onClick={() => handleSortChange('planDurationDays')} className="px-3 py-2 bg-gray-800 text-white rounded">
             Sort by Duration {sortBy === 'duration' && `(${sortOrder})`}
           </button>
           <button onClick={() => handleSortChange('amount')} className="px-3 py-2 bg-gray-800 text-white rounded">
@@ -93,9 +93,9 @@ const InvestmentsPage = () => {
                 <td className="p-3">{inv.user?.fullName}</td>
                 <td className="p-3">{inv.user?.email}</td>
                 <td className="p-3">₦{inv.amount.toLocaleString()}</td>
-                <td className="p-3">{inv.durationInDays} days</td>
+                <td className="p-3">{inv.planDurationDays} days</td>
                 <td className="p-3">{inv.roiPercentage} %</td>
-                <td className="p-3 capitalize">{inv.status}</td>
+                <td className="p-3 capitalize">{inv.roiCredited ? 'Completed' : 'Active'}</td>
                 <td className="p-3">{new Date(inv.createdAt).toLocaleString()}</td>
               </tr>
             ))}

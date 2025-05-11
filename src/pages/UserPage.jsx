@@ -4,20 +4,6 @@ import axios from '../utils/axios'
 import LoadingSpinner from '../components/LoadingSpinner';
 import toast from 'react-hot-toast'
 
-const dummyProfileEditRequest = {
-  fullName: 'John D.',
-  email: 'johnny@example.com',
-  phoneNumber: '08087654321',
-  country: 'Ghana',
-};
-
-const dummyVerificationRequest = {
-  idType: 'National ID',
-  frontImage: '/vite.svg',
-  backImage: '/vite.svg',
-  status: 'false'
-};
-
 
 export default function AdminUserDetailPage() {
   const {id} = useParams()
@@ -142,15 +128,13 @@ export default function AdminUserDetailPage() {
         <div><strong>Phone:</strong> {user.phoneNumber}</div>
         <div><strong>Country:</strong> {user.country}</div>
         <div><strong>Referral Code:</strong> {user.referralCode}</div>
-        <div><strong>Available Balance:</strong> {user.availableBalance.toLocaleString()} coins</div>
-        <div><strong>Staked Balance:</strong> {user.stakedBalance.toLocaleString()} coins</div>
-        <div><strong>Referral Bonus Balance:</strong> {user.referralBonusBalance.toLocaleString()} coins</div>
+        <div><strong>Available Balance:</strong> {user.availableBalance.toLocaleString()} CHT</div>
+        <div><strong>Staked Balance:</strong> {user.stakedBalance.toLocaleString()} CHT</div>
+        <div><strong>Referral Bonus Balance:</strong> {user.referralBonusBalance.toLocaleString()} CHT</div>
         <div><strong>Phone Verified:</strong> {user.isPhoneVerified ? 'Yes' : 'No'}</div>
         <div><strong>Document Verified:</strong> {user.isDocumentVerified ? 'Yes' : 'No'}</div>
         <div><strong>Suspended:</strong> {user.isSuspended ? 'Yes' : 'No'}</div>
         <div><strong>Role:</strong> {user.role}</div>
-        <div><strong>Account Number:</strong> {user?.AccountNumber || 'None'}</div>
-        <div><strong>Bank Name:</strong> {user?.BankName || 'None'}</div>
       </div>
 
       {/* Admin Actions */}
@@ -179,42 +163,18 @@ export default function AdminUserDetailPage() {
         </button>
       </div>
 
-      {/* Profile Edit Request */}
-      {!pendingProfileEditRequest ? <></> : <div className="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800 text-white p-4 mt-6">
-        <h2 className="text-lg font-semibold mb-2">Pending Profile Edit Request</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {Object.entries(pendingProfileEditRequest?.updates).map(([key, value]) => (
-            <div key={key}>
-              <strong>{key}:</strong> {value}
-            </div>
-          ))}
-        </div>
-        <div className="flex gap-2 mt-4">
-          <button
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-            onClick={() => handleApproveEdit(pendingProfileEditRequest._id)}
-          >
-            Approve
-          </button>
-          <button
-            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
-            onClick={()=>handleDeclineEdit(pendingProfileEditRequest._id)}
-          >
-            Decline
-          </button>
-        </div>
-      </div>}
-
       {/* Verification Request */}
-      {!idVerification ? <></> : <div className="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800 text-white p-4 mt-6">
+      {idVerification && <div className="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800 text-white p-4 mt-6">
         <h2 className="text-lg font-semibold mb-2">Document Verification</h2>
-        <p><strong>ID Type:</strong> {dummyVerificationRequest.idType}</p>
+        <p><strong>Country:</strong> {idVerification.country}</p>
+        <p><strong>ID Type:</strong> {idVerification.type}</p>
+        <p><strong>Requested At:</strong> {new Date(idVerification.createdAt).toLocaleDateString('en-GB')}</p>
         <div className="flex flex-col sm:flex-row gap-4 mt-2">
-          <img src={dummyVerificationRequest.frontImage} alt="Front ID" className="rounded w-full sm:w-52 border" />
-          <img src={dummyVerificationRequest.backImage} alt="Back ID" className="rounded w-full sm:w-52 border" />
+          <img src={idVerification.frontImage} alt="Front ID" className="rounded w-full sm:w-52 border" />
+          <img src={idVerification.backImage} alt="Back ID" className="rounded w-full sm:w-52 border" />
         </div>
 
-        {dummyVerificationRequest.status === 'pending' ? (
+        {idVerification.status === 'pending' ? (
           <div className="flex gap-2 mt-4">
             <button
               className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"

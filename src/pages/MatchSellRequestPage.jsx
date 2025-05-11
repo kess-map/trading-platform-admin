@@ -20,7 +20,7 @@ const MatchSellRequestPage = () => {
       const res = await axios.get(`/admin/sell-orders/${id}`);
       setSellOrder(res.data.data.sellOrder);
       setRemainingAmount(res.data.data.sellOrder.remainingAmount);
-      setPaymentMethod(res.data.data.paymentMethod)
+      setPaymentMethod(res.data.data.sellOrder.paymentMethod)
     } catch (err) {
       toast.error('Failed to fetch sell order');
     }

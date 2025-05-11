@@ -40,6 +40,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li><Link to={'/sell-requests'} className="block px-4 py-4 hover:bg-gray-700 rounded">Sell Requests</Link></li>
           <li><Link to={'/matched-requests'} className="block px-4 py-4 hover:bg-gray-700 rounded">Matched Requests</Link></li>
           <li><Link to={'/investments'} className="block px-4 py-4 hover:bg-gray-700 rounded">Investments</Link></li>
+          <li><Link to={'/profile-requests'} className="block px-4 py-4 hover:bg-gray-700 rounded">Profile Requests</Link></li>
+          <li><Link to={'/id-verifications'} className="block px-4 py-4 hover:bg-gray-700 rounded">ID Verification</Link></li>
+          <li><Link to={'/live-sessions'} className="block px-4 py-4 hover:bg-gray-700 rounded">Live Sessions</Link></li>
         </ul>
         <ul className="mb-1 space-y-2">
           <li onClick={handleLogout} className="block px-4 py-4 hover:bg-gray-700 rounded">Logout</li>

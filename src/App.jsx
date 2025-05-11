@@ -16,6 +16,10 @@ import SellRequestPage from './pages/sellRequestPage'
 import MatchSellRequestPage from './pages/MatchSellRequestPage'
 import MatchedRequestsPage from './pages/MatchedRequestsPage'
 import InvestmentsPage from './pages/InvestmentsPage'
+import ProfileRequestsPage from './pages/ProfileRequestsPage'
+import ProfileRequestPage from './pages/ProfileRequestPage'
+import IdVerificationsPage from './pages/IdVerificationsPage'
+import IdVerificationPage from './pages/IdVerificationPage'
 
 function App() {
   const ProtectedRoute = ({children})=>{
@@ -79,6 +83,10 @@ function App() {
           <Route path='/sell-requests/:id/match' element={<MatchSellRequestPage />} />
           <Route path='/matched-requests' element={<MatchedRequestsPage />} />
           <Route path='/investments' element={<InvestmentsPage />} />
+          <Route path='/profile-requests' element={<ProfileRequestsPage />} />
+          <Route path='/profile-requests/:id' element={<ProfileRequestPage />} />
+          <Route path='/id-verifications' element={<IdVerificationsPage />} />
+          <Route path='/id-verifications/:id' element={<IdVerificationPage />} />
         </Route>
       </Routes>
       <Toaster/>

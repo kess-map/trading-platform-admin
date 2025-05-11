@@ -75,7 +75,7 @@ const AdminUsersPage = () => {
               <th className="p-3">Full Name</th>
               <th className="p-3">Email</th>
               <th className="p-3">Role</th>
-              <th className="p-3">Verified</th>
+              <th className="p-3">ID Verified</th>
               <th className="p-3">Suspended</th>
               <th className="p-3 text-right">Actions</th>
             </tr>
