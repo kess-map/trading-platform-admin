@@ -34,15 +34,16 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
       <div className="flex flex-col justify-between h-full">
         <ul className="mt-1 space-y-2">
-          <li><Link to={'/'} className="block px-4 py-4 hover:bg-gray-700 rounded">Dashboard</Link></li>
-          <li><Link to={'/users'} className="block px-4 py-4 hover:bg-gray-700 rounded">Users</Link></li>
-          <li><Link to={'/buy-requests'} className="block px-4 py-4 hover:bg-gray-700 rounded">Buy Requests</Link></li>
-          <li><Link to={'/sell-requests'} className="block px-4 py-4 hover:bg-gray-700 rounded">Sell Requests</Link></li>
-          <li><Link to={'/matched-requests'} className="block px-4 py-4 hover:bg-gray-700 rounded">Matched Requests</Link></li>
-          <li><Link to={'/investments'} className="block px-4 py-4 hover:bg-gray-700 rounded">Investments</Link></li>
-          <li><Link to={'/profile-requests'} className="block px-4 py-4 hover:bg-gray-700 rounded">Profile Requests</Link></li>
-          <li><Link to={'/id-verifications'} className="block px-4 py-4 hover:bg-gray-700 rounded">ID Verification</Link></li>
-          <li><Link to={'/live-sessions'} className="block px-4 py-4 hover:bg-gray-700 rounded">Live Sessions</Link></li>
+          <li><Link to={'/'} className="block px-4 py-2 hover:bg-gray-700 rounded">Dashboard</Link></li>
+          <li><Link to={'/users'} className="block px-4 py-2 hover:bg-gray-700 rounded">Users</Link></li>
+          <li><Link to={'/buy-requests'} className="block px-4 py-2 hover:bg-gray-700 rounded">Buy Requests</Link></li>
+          <li><Link to={'/sell-requests'} className="block px-4 py-2 hover:bg-gray-700 rounded">Sell Requests</Link></li>
+          <li><Link to={'/matched-requests'} className="block px-4 py-2 hover:bg-gray-700 rounded">Matched Requests</Link></li>
+          <li><Link to={'/investments'} className="block px-4 py-2 hover:bg-gray-700 rounded">Investments</Link></li>
+          <li><Link to={'/profile-requests'} className="block px-4 py-2 hover:bg-gray-700 rounded">Profile Requests</Link></li>
+          <li><Link to={'/id-verifications'} className="block px-4 py-2 hover:bg-gray-700 rounded">ID Verification</Link></li>
+          <li><Link to={'/appeals'} className="block px-4 py-2 hover:bg-gray-700 rounded">Appeals</Link></li>
+          <li><Link to={'/live-sessions'} className="block px-4 py-2 hover:bg-gray-700 rounded">Live Sessions</Link></li>
         </ul>
         <ul className="mb-1 space-y-2">
           <li onClick={handleLogout} className="block px-4 py-4 hover:bg-gray-700 rounded">Logout</li>

@@ -20,6 +20,9 @@ import ProfileRequestsPage from './pages/ProfileRequestsPage'
 import ProfileRequestPage from './pages/ProfileRequestPage'
 import IdVerificationsPage from './pages/IdVerificationsPage'
 import IdVerificationPage from './pages/IdVerificationPage'
+import LiveSessionsPage from './pages/LiveSessionsPage'
+import AppealsPAge from './pages/AppealsPAge'
+import AppealPage from './pages/AppealPage'
 
 function App() {
   const ProtectedRoute = ({children})=>{
@@ -87,6 +90,9 @@ function App() {
           <Route path='/profile-requests/:id' element={<ProfileRequestPage />} />
           <Route path='/id-verifications' element={<IdVerificationsPage />} />
           <Route path='/id-verifications/:id' element={<IdVerificationPage />} />
+          <Route path='/live-sessions' element={<LiveSessionsPage />} />
+          <Route path='/appeals' element={<AppealsPAge />} />
+          <Route path='/appeals/:id' element={<AppealPage />} />
         </Route>
       </Routes>
       <Toaster/>

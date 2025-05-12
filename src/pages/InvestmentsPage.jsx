@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from '../utils/axios';
-import { MoreVertical } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import axios from '../utils/axios';;
 
 const InvestmentsPage = () => {
   const [investments, setInvestments] = useState([]);
@@ -23,7 +21,6 @@ const InvestmentsPage = () => {
 
     const res = await axios.get(`/admin/investments?${queryParams}`);
     setInvestments(res.data.data.investments);
-    console.log(res.data.data.investments)
     setPages(res.data.data.pages);
   };
 
@@ -51,7 +48,7 @@ const InvestmentsPage = () => {
           className="border p-2 rounded w-full md:w-1/3"
         />
 
-        <div className="flex gap-3">
+        <div className="flex overflow-x-auto md:overflow-hidden gap-3">
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
