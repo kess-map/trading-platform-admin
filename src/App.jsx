@@ -21,7 +21,7 @@ import ProfileRequestPage from './pages/ProfileRequestPage'
 import IdVerificationsPage from './pages/IdVerificationsPage'
 import IdVerificationPage from './pages/IdVerificationPage'
 import LiveSessionsPage from './pages/LiveSessionsPage'
-import AppealsPAge from './pages/AppealsPAge'
+import AppealsPAge from './pages/AppealsPage'
 import AppealPage from './pages/AppealPage'
 
 function App() {
