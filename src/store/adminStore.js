@@ -35,7 +35,7 @@ export const useAdminStore = create((set)=> ({
     checkAuth: async()=>{
         set({isCheckingAuth: true, error:null})
         try {
-            const response = await axios.get(`/auth/check-auth`)
+            const response = await axios.get(`/admin/check-auth`)
             set({user: response.data.data, isAuthenticated: true, isCheckingAuth: false})
         } catch (error) {
             set({ error: null, isCheckingAuth: false, isAuthenticated: false })
