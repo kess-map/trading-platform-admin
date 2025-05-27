@@ -51,6 +51,7 @@ export default function AdminUserDetailPage() {
         <h2 className="text-lg font-semibold mb-2">Document Verification</h2>
         <p><strong>Country:</strong> {pendingVerificationRequest.country}</p>
         <p><strong>ID Type:</strong> {pendingVerificationRequest.type}</p>
+        <p><strong>ID Number:</strong> {pendingVerificationRequest.idNumber}</p>
         <p><strong>Requested At:</strong> {new Date(pendingVerificationRequest.createdAt).toLocaleDateString('en-GB')}</p>
         <div className="flex flex-col md:flex-row gap-4 mt-2">
             <div>

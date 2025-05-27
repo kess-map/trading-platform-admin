@@ -36,6 +36,7 @@ const ProfileRequestsPage = () => {
               <th className="p-3">Username</th>
               <th className="p-3">Selected Country</th>
               <th className="p-3">Verification Type</th>
+              <th className="p-3">ID Number</th>
               <th className="p-3">Date Requested</th>
               <th className="p-3 text-right">Actions</th>
             </tr>
@@ -48,6 +49,7 @@ const ProfileRequestsPage = () => {
                 <td className="p-3">{ver.user.username}</td>
                 <td className="p-3">{ver.country}</td>
                 <td className="p-3">{ver.type}</td>
+                <td className="p-3">{ver.idNumber}</td>
                 <td className="p-3">{new Date(ver.createdAt).toLocaleDateString('en-GB')}</td>                
                 <td className="p-3 text-right relative">
                   <button onClick={() => setDropdownOpen(dropdownOpen === ver._id ? null : ver._id)}>
