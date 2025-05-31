@@ -4,7 +4,7 @@ import { MoreVertical } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-const TABS = ['all', 'pending', 'approved', 'declined', 'completed', 'cancelled'];
+const TABS = ['all', 'pending', 'approved', 'matched', 'declined', 'completed', 'cancelled'];
 
 const SellRequestsPage = () => {
   const [orders, setOrders] = useState([]);
