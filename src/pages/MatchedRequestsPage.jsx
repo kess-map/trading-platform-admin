@@ -54,7 +54,7 @@ const MatchedOrdersPage = () => {
     <div className="p-4 text-white">
       {/* Tabs */}
       <div className="flex space-x-4 mb-6">
-        {['all', 'pending', 'deployed', 'completed'].map((status) => (
+        {['all', 'pending', 'deployed', 'completed', 'cancelled'].map((status) => (
           <button
             key={status}
             onClick={() => setTab(status)}
