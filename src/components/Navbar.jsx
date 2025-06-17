@@ -4,8 +4,10 @@ import { Search } from "lucide-react";
 const Navbar = ({ toggleSidebar }) => {
   return (
     <nav className="bg-gray-800 text-white p-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
-      <div className="flex items-center justify-center">
-        <img src="/vite.svg" alt="logo" className="w-5 h-5 justify-center mr-2"/>
+      <div className="flex items-center justify-center gap-2">
+        <div className='h-20 overflow-hidden'>
+          <img src="/logo2.png" alt="logo" className='object-contain h-20 w-20 md:w-36'/>
+        </div>
         <h1 className="text-lg font-bold text-center whitespace-nowrap lg:mr-20">Trading Platform</h1>
       </div>
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from '../utils/axios'
 import LoadingSpinner from '../components/LoadingSpinner';
 import toast from 'react-hot-toast'
@@ -7,10 +7,9 @@ import toast from 'react-hot-toast'
 
 export default function AdminUserDetailPage() {
   const {id} = useParams()
+  const navigate = useNavigate()
   
   const [user, setUser] = useState(null)
-  const [pendingProfileEditRequest, setPendingProfileEditRequest] = useState(null)
-  const [idVerification, setIdVerification] = useState(null)
   const [showTopUpModal, setShowTopUpModal] = useState(false);
   const [topUpAmount, setTopUpAmount] = useState('');
   
@@ -18,54 +17,15 @@ export default function AdminUserDetailPage() {
       const res = await axios.get(`/admin/user/${userId}`);
       setUser(res.data.data)
     };
-
-    const fetchPendingProfileEditRequest = async (userId) => {
-      const res = await axios.get(`/admin/user/profile-request/${userId}`);
-      setPendingProfileEditRequest(res.data.data)
-    };
-
-    const fetchIdVerification = async (userId) => {
-      const res = await axios.get(`/admin/user/id-verification/${userId}`);
-      setIdVerification(res.data.data)
-    };
   
   useEffect(()=>{
     try {
       fetchUser(id)
-      fetchPendingProfileEditRequest(id)
-      fetchIdVerification(id)
-      
     } catch (error) {
       console.log(error)
       toast.error(error.response.data.message || 'Something went wrong')
     }
   },[])
-
-  const handleApproveEdit = async(requestId) => {
-    try {
-      await axios.post(`/admin/user/profile-request/${requestId}`, {action : 'approved'})
-      toast.success('Profile Edit Request approved successfully')
-    } catch (error) {
-      toast.error(error.response.data.message || 'Something went wrong')
-    }
-  };
-
-  const handleDeclineEdit = async(requestId) => {
-    try {
-      await axios.post(`/admin/user/profile-request/${requestId}`, {action : 'declined'})
-      toast.success('Profile Edit Request declined successfully')
-    } catch (error) {
-      toast.error(error.response.data.message || 'Something went wrong')
-    }
-  };
-
-  const handleApproveVerification = () => {
-    console.log('Document Verified');
-  };
-
-  const handleDeclineVerification = () => {
-    console.log('Verification Declined');
-  };
 
   const handleSuspend = async() => {
     try {
@@ -161,48 +121,14 @@ export default function AdminUserDetailPage() {
         >
           Make {user.role === 'USER' ? 'ADMIN' : "USER"}
         </button>
+
+        <button
+          className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition"
+          onClick={() => navigate(`/user/${id}/trade-history`)}
+        >
+          View Trade History
+        </button>
       </div>
-
-      {/* Verification Request */}
-      {idVerification && <div className="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-xl shadow-2xl border border-gray-800 text-white p-4 mt-6">
-        <h2 className="text-lg font-semibold mb-2">Document Verification</h2>
-        <p><strong>Country:</strong> {idVerification.country}</p>
-        <p><strong>ID Type:</strong> {idVerification.type}</p>
-        <p><strong>Requested At:</strong> {new Date(idVerification.createdAt).toLocaleDateString('en-GB')}</p>
-        <div className="flex flex-col sm:flex-row gap-4 mt-2">
-          <img src={idVerification.frontImage} alt="Front ID" className="rounded w-full sm:w-52 border" />
-          <img src={idVerification.backImage} alt="Back ID" className="rounded w-full sm:w-52 border" />
-        </div>
-
-        {idVerification.status === 'pending' ? (
-          <div className="flex gap-2 mt-4">
-            <button
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-              onClick={handleApproveVerification}
-            >
-              Approve
-            </button>
-            <button
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
-              onClick={handleDeclineVerification}
-            >
-              Decline
-            </button>
-          </div>
-        ) : (
-          <div className="mt-4">
-            <span
-              className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
-                dummyVerificationRequest.status === 'approved'
-                  ? 'bg-green-700 text-white'
-                  : 'bg-red-700 text-white'
-              }`}
-            >
-              {dummyVerificationRequest.status.charAt(0).toUpperCase() + dummyVerificationRequest.status.slice(1)}
-            </span>
-          </div>
-        )}
-      </div>}
     </div>}
     {showTopUpModal && (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">

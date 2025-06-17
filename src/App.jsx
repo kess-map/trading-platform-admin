@@ -23,6 +23,7 @@ import IdVerificationPage from './pages/IdVerificationPage'
 import LiveSessionsPage from './pages/LiveSessionsPage'
 import AppealsPAge from './pages/AppealsPage'
 import AppealPage from './pages/AppealPage'
+import AdminUserTradeHistoryPage from './pages/AdminUserTradeHistoryPage'
 
 function App() {
   const ProtectedRoute = ({children})=>{
@@ -93,6 +94,7 @@ function App() {
           <Route path='/live-sessions' element={<LiveSessionsPage />} />
           <Route path='/appeals' element={<AppealsPAge />} />
           <Route path='/appeals/:id' element={<AppealPage />} />
+          <Route path="/user/:id/trade-history" element={<AdminUserTradeHistoryPage />} />
         </Route>
       </Routes>
       <Toaster/>
